@@ -407,6 +407,7 @@ function getValueByPath(object, path) {
 		} else if (value && Number(key) in value) {
 			value = value[ Number(key) ];
 		} else {
+			console.warn("Failed to get value from path", { path, object });
 			return undefined;
 		}
 	}
