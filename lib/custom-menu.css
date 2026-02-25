@@ -1,0 +1,181 @@
+@layer custom-menu {
+	:root {
+		--cm-drag-thumb-dotcount: 2;
+		--cm-drag-thumb-size: calc(10px * var(--cm-drag-thumb-dotcount));
+	}
+	:root[custom-menu-theme=light],
+	:root:not([custom-menu-theme]) {
+		--cm-background: #FBFBFE;
+		--cm-color: #050315;
+		--cm-accent: #54C7A5;
+		--cm-box-shadow: 0 0 0 1px #0000001A;
+		--cm-border-shadow: 1px solid #0000001A;
+		--cm-box-shadow-floating: 0 0 20px 1px #0000001A, 0 0 0 1px #0000001A;
+	}
+
+	:root[custom-menu-theme=dark] {
+		--cm-background: #040401;
+		--cm-color: #FAFCEA;
+		--cm-accent: #0d7c5b;
+		--cm-box-shadow: 0 0 0 1px #FFFFFF1A;
+		--cm-border-shadow: 1px solid #FFFFFF1A;
+		--cm-box-shadow-floating: 0 0 20px 1px #FFFFFF1a, 0 0 0 1px #FFFFFF1a;
+	}
+
+	custom-menu {
+		padding: 0.5rem;
+		border-radius: 1rem;
+		background: var(--cm-background);
+		color: var(--cm-color);
+		box-shadow: var(--cm-box-shadow);
+		z-index: 2147483647;
+		pointer-events: all;
+		touch-action: none;
+	}
+
+	custom-menu > * { color: inherit; }
+
+	custom-menu[kind="toolbar"] {
+		position: fixed;
+		display: flex;
+		gap: 0.5rem;
+		align-items: stretch;
+		box-shadow: var(--cm-box-shadow-floating);
+	}
+
+	custom-menu[direction="row"],
+	custom-menu:not([direction]) {
+		flex-direction: row;
+	}
+
+	custom-menu[direction="column"] {
+		flex-direction: column;
+	}
+
+	custom-menu[draggable]:before {
+		content: "";
+		position: relative;
+		display: inline-block;
+		width: calc(10px * var(--cm-drag-thumb-dotcount));
+		background-image: radial-gradient( var(--cm-color) 1px, transparent 0);
+		background-size: 10px 10px;
+		padding: 0.5rem 0.1rem;
+		box-sizing: border-box;
+		translate: 0 5%;
+	}
+
+	custom-menu[draggable]:after {
+		content: "";
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: calc(0.5rem + calc(10px * var(--cm-drag-thumb-dotcount)));
+		height: 100%;
+		background-color: transparent;
+		cursor: move;
+		border-radius: 1rem 0 0 1rem;
+	}
+
+	custom-menu[draggable][direction="column"]:before {
+		width: 100%;
+		height: calc(10px * var(--cm-drag-thumb-dotcount));
+		translate: 5% 0;
+	}
+
+	custom-menu[draggable][direction="column"]:after {
+		content: "";
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: calc(0.5rem + calc(10px * var(--cm-drag-thumb-dotcount)));
+		background-color: transparent;
+		border-radius: 1rem 1rem 0 0;
+	}
+
+	:root[custom-menu-dragging] { cursor: move !important; touch-action: none; user-select: none; }
+
+
+	custom-menu[kind=dropdown] {
+		box-shadow: var(--cm-box-shadow);
+		display: inline-flex;
+		flex-direction: column;
+		position: relative;
+		gap: 0.25rem;
+		width: max-content;
+		padding: 0.25rem;
+		border-radius: 1rem;
+		font-family: "Inter";
+	}
+
+	custom-menu[kind=dropdown] option {
+		cursor: pointer;
+		background-color: var(--cm-background);
+		padding: 0.5rem;
+		border-radius: calc(1rem - 0.25rem);
+		box-shadow: var(--cm-box-shadow);
+		font-family: "Inter";
+		font-size: 16px;
+		border: none;
+		outline: none;
+		transition: transform, filter, background-color;
+		transition-duration: 400ms;
+	}
+	custom-menu[kind=dropdown] option:hover {
+		background: color-mix(in srgb, var(--cm-background), var(--cm-accent) 50%);
+	}
+
+	custom-menu[kind=dropdown] > option {
+		background-color: var(--cm-accent);
+		padding: 0.5rem 1rem;
+	}
+	custom-menu[kind=dropdown] > option::before {
+		content: "";
+		display: inline-block;
+		width: 0.5rem;
+		height: 0.5rem;
+		transition: scale, margin-right, border-right-color, border-bottom-color, rotate;
+		transition-duration: 200ms;
+		border-right: 2px solid var(--cm-color);
+		border-bottom: 2px solid var(--cm-color);
+		rotate: 45deg;
+		margin-right: 0.5rem;
+	}
+
+	custom-menu[kind=dropdown]>div>option[selected] {
+		background-color: var(--cm-accent);
+	}
+
+	custom-menu[kind=dropdown] > div {
+		position: absolute;
+		top: 100%;
+		left: -1px;
+		width: calc( 100% - 0.5rem );
+		padding: 0.25rem;
+		padding-top: 0;
+		display: none;
+		flex-direction: column;
+		gap: 0.25rem;
+		background-color: inherit;
+		border: var(--cm-border-shadow);
+		border-radius: 0 0 1rem 1rem;
+		border-top: none;
+	}
+
+
+	custom-menu[kind=dropdown].open {
+		z-index: 2147483646;
+		user-select: none;
+		border-bottom-color: transparent;
+		border-radius: 1rem 1rem 0 0;
+	}
+
+	custom-menu[kind=dropdown].open > option::before {
+		rotate: 225deg;
+		scale: 1;
+	}
+
+	custom-menu[kind=dropdown].open > div {
+		display: flex;
+	}
+}
