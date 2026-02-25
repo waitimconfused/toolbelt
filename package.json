@@ -13,11 +13,11 @@
 	"license": "ISC",
 	"author": "",
 	"type": "commonjs",
-	"main": "index.js",
-	"directories": {
-		"lib": "lib"
-	},
+	"main": "minified.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"build": "esbuild index.js --bundle --outfile=minified.js"
+	},
+	"dependencies": {
+		"esbuild": "^0.27.3"
 	}
 }

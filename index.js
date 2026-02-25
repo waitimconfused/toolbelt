@@ -1,18 +1,18 @@
-import Colour from "./extras/Colour.js";
-import { Controller } from "./inputs/Controller.js";
-import TBDatabase from "./extras/Database.js";
-import { files } from "./extras/Files.js";
-import { range, round } from "./math/Range.js";
-import { Vector } from "./math/Vector.js";
+import Colour from "./src/extras/Colour.js";
+import { Controller } from "./src/inputs/Controller.js";
+import TBDatabase from "./src/extras/Database.js";
+import { files } from "./src/extras/Files.js";
+import { range, round } from "./src/math/Range.js";
+import { Vector } from "./src/math/Vector.js";
 
-import keyboard from "./inputs/Keyboard.js";
-import mouse from "./inputs/Mouse.js";
+import keyboard from "./src/inputs/Keyboard.js";
+import mouse from "./src/inputs/Mouse.js";
 
-import { CustomMenu } from "./extras/CustomMenu.js";
-import CustomUnitConverter, { getValue, unitConverter } from "./math/Units.js";
+import { CustomMenu } from "./src/extras/CustomMenu.js";
+import CustomUnitConverter, { getValue, unitConverter } from "./src/math/Units.js";
 
-import { image } from "./extras/Image.js";
-import { Point2, Point3, Point4 } from "./math/Points.js";
+import { image } from "./src/extras/Image.js";
+import { Point2, Point3, Point4 } from "./src/math/Points.js";
 
 window.toolbelt = {
 	keyboard, mouse,
