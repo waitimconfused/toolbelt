@@ -1,4 +1,4 @@
-import { range } from "./Range.js";
+import { range } from "../math/Range.js";
 
 /**
  * @typedef HexCode
